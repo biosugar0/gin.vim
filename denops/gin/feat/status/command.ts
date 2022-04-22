@@ -6,7 +6,7 @@ import * as fn from "https://deno.land/x/denops_std@v3.3.0/function/mod.ts";
 import * as option from "https://deno.land/x/denops_std@v3.3.0/option/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v3.3.0/variable/mod.ts";
 import * as unknownutil from "https://deno.land/x/unknownutil@v2.0.0/mod.ts";
-import * as path from "https://deno.land/std@0.133.0/path/mod.ts";
+import * as path from "https://deno.land/std@0.136.0/path/mod.ts";
 import {
   formatFlags,
   parse,
