@@ -134,7 +134,7 @@ export async function read(denops: Denops): Promise<void> {
       await option.bufhidden.setLocal(denops, "unload");
       await option.buftype.setLocal(denops, "nofile");
       await option.swapfile.setLocal(denops, false);
-      await option.modifiable.setLocal(denops, false);
+      await option.modifiable.setLocal(denops, true);
       await mapping.map(
         denops,
         "<Plug>(gin-diffjump-old)",
@@ -176,6 +176,11 @@ export async function read(denops: Denops): Promise<void> {
   await buffer.assign(denops, bufnr, stdout, {
     fileformat: opts["ff"] ?? opts["fileformat"],
     fileencoding: opts["enc"] ?? opts["fileencoding"],
+  });
+  await buffer.ensure(denops, bufnr, async () => {
+    await batch.batch(denops, async (denops) => {
+      await option.modifiable.setLocal(denops, false);
+    });
   });
   await buffer.concrete(denops, bufnr);
 }
